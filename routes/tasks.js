@@ -2,55 +2,45 @@
 const express = require('express');
 const router = express.Router();
 
-const categoriesController = require('../controllers/categories');
+const tasksController = require('../controllers/tasks');
 const {
-  categoryValidationRules,
+  taskValidationRules,
   validate
 } = require('../middleware/validation');
 
-// GET all categories
+// GET all tasks
 router.get('/', (req, res, next) => {
-  // #swagger.tags = ['Categories']
-  // #swagger.summary = 'Get all categories'
-  categoriesController.getAll(req, res, next);
+  tasksController.getAll(req, res, next);
 });
 
-// GET category by ID
+// GET task by ID
 router.get('/:id', (req, res, next) => {
-  // #swagger.tags = ['Categories']
-  // #swagger.summary = 'Get category by ID'
-  categoriesController.getSingle(req, res, next);
+  tasksController.getSingle(req, res, next);
 });
 
-// POST create category
+// POST create task
 router.post(
   '/',
-  categoryValidationRules(),
+  taskValidationRules(),
   validate,
   (req, res, next) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.summary = 'Create a new category'
-    categoriesController.create(req, res, next);
+    tasksController.create(req, res, next);
   }
 );
 
-// PUT update category
+// PUT update task
 router.put(
   '/:id',
-  categoryValidationRules(),
+  taskValidationRules(),
   validate,
   (req, res, next) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.summary = 'Update a category'
-    categoriesController.update(req, res, next);
+    tasksController.update(req, res, next);
   }
 );
 
-// DELETE category
+// DELETE task
 router.delete('/:id', (req, res, next) => {
-  // #swagger.tags = ['Categories']
-  // #swagger.summary = 'Delete a category'
-  categoriesController.remove(req, res, next);
+  tasksController.remove(req, res, next);
 });
 
 module.exports = router;
