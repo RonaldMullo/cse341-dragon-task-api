@@ -5,7 +5,7 @@
     "description": "REST API for managing tasks and categories. CSE 341 Final Project.",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-dragon-task-api.onrender.com",
   "basePath": "/",
   "tags": [
     {
@@ -18,7 +18,7 @@
     }
   ],
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"

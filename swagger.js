@@ -8,9 +8,9 @@ const doc = {
       'REST API for managing tasks and categories. CSE 341 Final Project.',
     version: '1.0.0'
   },
-  host: 'localhost:3000',
-  basePath: '/',
-  schemes: ['http'],
+ host: 'cse341-dragon-task-api.onrender.com',
+basePath: '/',
+schemes: ['https'],
   consumes: ['application/json'],
   produces: ['application/json'],
   tags: [
