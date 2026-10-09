@@ -1,0 +1,381 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Dragon Task API",
+    "description": "REST API for managing tasks and categories. CSE 341 Final Project.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Categories",
+      "description": "Category management endpoints"
+    },
+    {
+      "name": "Tasks",
+      "description": "Task management endpoints"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get all categories",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create a category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "University"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "University tasks"
+                },
+                "color": {
+                  "type": "string",
+                  "example": "#2563EB"
+                },
+                "icon": {
+                  "type": "string",
+                  "example": "book"
+                },
+                "isActive": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get category by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid ID"
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Update a category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "University"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "University tasks"
+                },
+                "color": {
+                  "type": "string",
+                  "example": "#2563EB"
+                },
+                "icon": {
+                  "type": "string",
+                  "example": "book"
+                },
+                "isActive": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated"
+          },
+          "400": {
+            "description": "Validation failed"
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Delete a category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted"
+          },
+          "400": {
+            "description": "Invalid ID"
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get all tasks",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create a task",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Complete CSE 341 Project"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Develop and test the REST API"
+                },
+                "priority": {
+                  "type": "string",
+                  "example": "High"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "Pending"
+                },
+                "dueDate": {
+                  "type": "string",
+                  "example": "2026-10-20"
+                },
+                "categoryId": {
+                  "type": "string",
+                  "example": "REPLACE_WITH_EXISTING_CATEGORY_ID"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get task by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid ID"
+          },
+          "404": {
+            "description": "Task not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Update a task",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Complete CSE 341 Project"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Updated task description"
+                },
+                "priority": {
+                  "type": "string",
+                  "example": "Medium"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "In Progress"
+                },
+                "dueDate": {
+                  "type": "string",
+                  "example": "2026-10-20"
+                },
+                "categoryId": {
+                  "type": "string",
+                  "example": "REPLACE_WITH_EXISTING_CATEGORY_ID"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated"
+          },
+          "400": {
+            "description": "Validation failed"
+          },
+          "404": {
+            "description": "Task not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Delete a task",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted"
+          },
+          "400": {
+            "description": "Invalid ID"
+          },
+          "404": {
+            "description": "Task not found"
+          }
+        }
+      }
+    }
+  }
+}
