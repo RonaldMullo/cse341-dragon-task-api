@@ -96,8 +96,31 @@ body('categoryId')
 ];
 
 
-module.exports = {
-  categoryValidationRules,
-  taskValidationRules,
-  validate
-};
+
+
+// Week 06: Projects and Comments
+const projectValidationRules = () => [
+  body('name').isString().withMessage('Name must be a string').trim().notEmpty().withMessage('Name is required'),
+  body('description').isString().withMessage('Description must be a string').trim().notEmpty().withMessage('Description is required'),
+  body('status').isIn(['Planning', 'Active', 'Completed']).withMessage('Invalid project status'),
+  body('startDate').isISO8601().withMessage('Invalid start date'),
+  body('endDate').isISO8601().withMessage('Invalid end date')
+    .custom((value, { req }) => {
+      if (new Date(value) < new Date(req.body.startDate)) throw new Error('End date must not precede start date');
+      return true;
+    })
+];
+
+const commentValidationRules = () => [
+  body('taskId').isMongoId().withMessage('Task ID must be a valid MongoDB ID')
+    .bail().custom(async (value) => {
+      const { ObjectId } = require('mongodb');
+      const mongodb = require('../db/connect');
+      const task = await mongodb.getDb().collection('tasks').findOne({ _id: new ObjectId(value) });
+      if (!task) throw new Error('Task does not exist');
+      return true;
+    }),
+  body('author').isString().withMessage('Author must be a string').trim().notEmpty().withMessage('Author is required'),
+  body('content').isString().withMessage('Content must be a string').trim().notEmpty().withMessage('Content is required')
+];
+module.exports = { categoryValidationRules, taskValidationRules, projectValidationRules, commentValidationRules, validate };
