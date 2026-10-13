@@ -9,23 +9,17 @@ const {
 } = require('../middleware/validation');
 
 // GET all tasks
-router.get('/', (req, res, next) => {
-  tasksController.getAll(req, res, next);
-});
+router.get('/', tasksController.getAll);
 
 // GET task by ID
-router.get('/:id', (req, res, next) => {
-  tasksController.getSingle(req, res, next);
-});
+router.get('/:id', tasksController.getSingle);
 
 // POST create task
 router.post(
   '/',
   taskValidationRules(),
   validate,
-  (req, res, next) => {
-    tasksController.create(req, res, next);
-  }
+  tasksController.create
 );
 
 // PUT update task
@@ -33,14 +27,10 @@ router.put(
   '/:id',
   taskValidationRules(),
   validate,
-  (req, res, next) => {
-    tasksController.update(req, res, next);
-  }
+  tasksController.update
 );
 
 // DELETE task
-router.delete('/:id', (req, res, next) => {
-  tasksController.remove(req, res, next);
-});
+router.delete('/:id', tasksController.remove);
 
 module.exports = router;
