@@ -42,11 +42,28 @@ const update = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
   try {
-    if (!ObjectId.isValid(req.params.id)) return res.status(400).json({ message: 'Invalid ID' });
-    const result = await collection().deleteOne({ _id: new ObjectId(req.params.id) });
-    if (result.deletedCount === 0) return res.status(404).json({ message: 'Comment not found' });
-    res.status(200).json({ message: 'Comment deleted successfully' });
-  } catch (error) { next(error); }
+    if (!ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        message: 'Invalid comment ID'
+      });
+    }
+
+    const result = await collection().deleteOne({
+      _id: new ObjectId(req.params.id)
+    });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({
+        message: 'Comment not found'
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Comment deleted successfully'
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = { getAll, getSingle, create, update, remove };
